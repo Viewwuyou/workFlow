@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.viewwuyou.workflow.dao.ApplicationMapper">
+    <insert id="save" parameterType="application">
+        insert into application_inf values (null, #{attend.id}, #{reason}, false, #{type.id});
+    </insert>
+    <update id="update" parameterType="application">
+        update application_inf set attend_id = #{attend.id}, app_reason = #{reason}, app_result = #{result},
+                                   type_id = #{type.id} where app_id = #{id};
+    </update>
+    <select id="get" resultMap="applicationMap">
+        select app.*, type.*
+        from application_inf app
+        join attend_inf attend on app.attend_id = attend.attend_id
+        join attend_type_inf type on app.type_id = type.type_id
+        where app.app_id = #{id};
+    </select>
+    <select id="findByEmp" resultMap="applicationMap">
+        select app.*, type.*
+        from application_inf app
+        join attend_inf attend on app.attend_id = attend.attend_id
+        join attend_type_inf type on app.type_id = type.type_id
+        where attend.emp_id = #{id}
+    </select>
+    <!--TODO:重新弄一下关联映射 -->
+    <resultMap id="applicationMap" type="application">
+        <id column="app_id" property="id"/>
+        <result column="app_reason" property="reason"/>
+        <result column="app_result" property="result"/>
+
+        <association property="attend" javaType="attend"
+                     column="attend_id"
+                     select="mapper.AttendMapper.get"
+                     fetchType="lazy"/>
+        <association property="type" javaType="type"
+                     resultMap="mapper.AttendTypeMapper.typeMap"/>
+    </resultMap>
+</mapper>

@@ -1,19 +1,25 @@
 package com.viewwuyou.workflow.domain;
 
-import java.io.Serializable;
+import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
+import java.util.Date;
+
+@Alias("attend")
 public class Attend implements Serializable {
     private static final long serialVersionUID = 48L;
 
     private Integer id;
     private String dutyDay;
+    private boolean isCome;
+    private Date punchTime;
     private AttendType type;
     private Employee employee;
 
     public Attend() {
     }
 
-    public Attend(Integer id, String dutyDay, AttendType type, Employee employee) {
+    public Attend(Integer id, String dutyDay, AttendType type, Employee employee, boolean isCome, Date punchTime) {
         this.id = id;
         this.dutyDay = dutyDay;
         this.type = type;
@@ -50,5 +56,21 @@ public class Attend implements Serializable {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public boolean isCome() {
+        return isCome;
+    }
+
+    public void setCome(boolean come) {
+        isCome = come;
+    }
+
+    public Date getPunchTime() {
+        return punchTime;
+    }
+
+    public void setPunchTime(Date punchTime) {
+        this.punchTime = punchTime;
     }
 }

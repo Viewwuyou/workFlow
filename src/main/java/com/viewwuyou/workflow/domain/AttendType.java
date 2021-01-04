@@ -1,7 +1,10 @@
 package com.viewwuyou.workflow.domain;
 
+import org.apache.ibatis.type.Alias;
+
 import java.io.Serializable;
 
+@Alias("type")
 public class AttendType implements Serializable {
     private static final long serialVersionUID = 48L;
 
