@@ -1,0 +1,8 @@
+# Mapper配置文件
+在SpringBoot中，常常采用约定大于配置的方式构建项目，这使得对于一个开发项目来说，源代码与非源代码文件常常不在同一个地方
+
+非核心源代码文件被放置在resources文件夹中，核心源代码文件放在了java文件夹中
+
+因此，对于需要xml配置文件支持的mybatis，配置文件也是分离的，并且无需严格要求mybatis配置文件所在包与mapper类所在包相同
+
+需要在后期的sqlSessionFactory中指定mapperLocation即可。

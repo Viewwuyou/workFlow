@@ -2,6 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+这里注意一个点，由于spring采用maven或gradle的方式构件项目，而这两种构建软件都有着约定大于配置的要求
+因此常常将非源代码配置文件放在resources下，该文件夹下文件和java下在classpath中路径是一致的
+对于mybatis，由于配置文件的分离，这意味着mapper类和配置文件不在同一个包中，此时在配置文件中的引用就很有问题
+根据测试，mybatis的mapper配置文件中会指定namespace，该namespace是引用包名的前缀，而非配置文件自身所在的包或文件夹。
+-->
 <mapper namespace="com.viewwuyou.workflow.dao.ApplicationMapper">
     <insert id="save" parameterType="application">
         insert into application_inf values (null, #{attend.id}, #{reason}, false, #{type.id});
@@ -32,9 +38,10 @@
 
         <association property="attend" javaType="attend"
                      column="attend_id"
-                     select="mapper.AttendMapper.get"
+                     select=""
                      fetchType="lazy"/>
         <association property="type" javaType="type"
-                     resultMap="mapper.AttendTypeMapper.typeMap"/>
+                     resultMap="com.viewwuyou.workflow.dao.AttendTypeMapper.typeMap"/>
+        <!--此处对应文件开头的注解，这里的resultMap的引用是namespace-->
     </resultMap>
 </mapper>
