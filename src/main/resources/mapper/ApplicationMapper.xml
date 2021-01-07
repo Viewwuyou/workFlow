@@ -38,10 +38,11 @@
 
         <association property="attend" javaType="attend"
                      column="attend_id"
-                     select=""
+                     select="com.viewwuyou.workflow.dao.AttendMapper.get"
                      fetchType="lazy"/>
         <association property="type" javaType="type"
                      resultMap="com.viewwuyou.workflow.dao.AttendTypeMapper.typeMap"/>
         <!--此处对应文件开头的注解，这里的resultMap的引用是namespace-->
     </resultMap>
+    <cache/>
 </mapper>

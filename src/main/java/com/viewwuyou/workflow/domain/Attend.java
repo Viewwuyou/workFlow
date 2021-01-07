@@ -11,7 +11,7 @@ public class Attend implements Serializable {
 
     private Integer id;
     private String dutyDay;
-    private boolean isCome;
+    private Boolean isCome;
     private Date punchTime;
     private AttendType type;
     private Employee employee;
@@ -19,7 +19,7 @@ public class Attend implements Serializable {
     public Attend() {
     }
 
-    public Attend(Integer id, String dutyDay, AttendType type, Employee employee, boolean isCome, Date punchTime) {
+    public Attend(Integer id, String dutyDay, AttendType type, Employee employee, Boolean isCome, Date punchTime) {
         this.id = id;
         this.dutyDay = dutyDay;
         this.type = type;
@@ -58,7 +58,7 @@ public class Attend implements Serializable {
         this.employee = employee;
     }
 
-    public boolean isCome() {
+    public Boolean isCome() {
         return isCome;
     }
 

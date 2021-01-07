@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.viewwuyou.workflow.dao.AttendMapper">
+    <resultMap id="attendMap" type="attend">
+        <id column="attend_id" property="id"/>
+        <result column="duty_day" property="dutyDay"/>
+        <result column="punch_time" property="punchTime"/>
+        <result column="is_come" property="isCome"/>
+    </resultMap>
+
+    <select id="get" resultMap="attendMap">
+
+    </select>
+</mapper>
