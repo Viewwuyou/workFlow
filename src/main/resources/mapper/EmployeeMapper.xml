@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.viewwuyou.workflow.dao.EmployeeMapper">
+    <resultMap id="employeeMap" type="employee">
+        <id column="emp_id" property="id"/>
+        <result column="emp_name" property="name"/>
+        <result column="emp_pass" property="pass"/>
+        <result column="emp_salary" property="salary"/>
+        <association property="manager" javaType="manager"
+                     column="emp_id"
+                     select="com.viewwuyou.workflow.dao.EmployeeMapper.get"
+                     fetchType="lazy"/>
+        <collection property="attends"  javaType="ArrayList"
+                    ofType="attend" column="emp_id"
+                    select="com.viewwuyou.workflow.dao.AttendMapper.findByEmpId"
+                    fetchType="lazy"/>
+        <collection property="payments" javaType="ArrayList"
+                    ofType="payment" column="emp_id"
+                    select="com.viewwuyou.workflow.dao.PaymentMapper.findByEmpId"
+                    fetchType="lazy"/>
+        <discriminator javaType="int" column="emp_type">
+            <case value="2" resultMap="com.viewwuyou.workflow.dao.ManagerMapper.managerMap"/>
+        </discriminator>
+    </resultMap>
+    <cache/>
+</mapper>

@@ -8,6 +8,8 @@
         <result column="duty_day" property="dutyDay"/>
         <result column="punch_time" property="punchTime"/>
         <result column="is_come" property="isCome"/>
+        <association property="type" javaType="type" resultMap="com.viewwuyou.workflow.dao.AttendTypeMapper.typeMap"/>
+        <association property="employee" javaType="employee" resultMap=""
     </resultMap>
 
     <select id="get" resultMap="attendMap">

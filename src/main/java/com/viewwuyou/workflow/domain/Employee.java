@@ -1,5 +1,7 @@
 package com.viewwuyou.workflow.domain;
 
+import org.apache.ibatis.type.Alias;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -7,11 +9,14 @@ import java.util.List;
 /**
  * Employee类，定义该类是Manager类的父类，同时又是和Manager类有多对一的关系。
  */
+@Alias("employee")
 public class Employee implements Serializable {
     private static final long serialVersionUID = 48L;
 
     private Integer id;
     private String name;
+    private String pass;
+    private double salary;
     private Manager manager;
     private List<Attend> attends;
     private List<Payment> payments;
@@ -19,12 +24,14 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
-    public Employee(Integer id, String name, Manager manager, List<Attend> attends, List<Payment> payments) {
+    public Employee(Integer id, String pass, double salary, String name, Manager manager, List<Attend> attends, List<Payment> payments) {
         this.id = id;
         this.name = name;
         this.manager = manager;
         this.attends = attends;
         this.payments = payments;
+        this.pass = pass;
+        this.salary = salary;
     }
 
     public void setId(Integer id) {
@@ -67,5 +74,19 @@ public class Employee implements Serializable {
         return payments;
     }
 
+    public String getPass() {
+        return pass;
+    }
 
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
 }

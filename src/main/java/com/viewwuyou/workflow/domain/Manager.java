@@ -1,8 +1,11 @@
 package com.viewwuyou.workflow.domain;
 
+import org.apache.ibatis.type.Alias;
+
 import java.io.Serializable;
 import java.util.List;
 
+@Alias("manager")
 public class Manager extends Employee implements Serializable {
     private static final long serialVersionUID = 48L;
 

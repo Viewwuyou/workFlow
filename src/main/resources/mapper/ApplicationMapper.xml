@@ -30,7 +30,6 @@
         join attend_type_inf type on app.type_id = type.type_id
         where attend.emp_id = #{id}
     </select>
-    <!--TODO:重新弄一下关联映射 -->
     <resultMap id="applicationMap" type="application">
         <id column="app_id" property="id"/>
         <result column="app_reason" property="reason"/>
