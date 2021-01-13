@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.viewwuyou.workflow.dao.ManagerMapper">
+    <resultMap id="managerMap" type="manager" extends="com.viewwuyou.workflow.dao.EmployeeMapper.employeeMap">
+        <result column="dept_name" property="dept"/>
+        <collection property="checks" javaType="ArrayList"
+                    ofType="checks" column="emp_id"
+                    select="com.viewwuyou.workflow.dao.CheckBackMapper.findByMgrId"
+                    fetchType="lazy"/>
+        <collection property="employees" javaType="ArrayList"
+                    ofType="employee" column="emp_id"
+                    select="com.viewwuyou.workflow.dao.EmployeeMapper.findByMgrId"
+                    fetchType="lazy"/>
+    </resultMap>
+</mapper>

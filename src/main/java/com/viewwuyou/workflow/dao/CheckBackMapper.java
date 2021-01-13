@@ -4,4 +4,6 @@ import com.viewwuyou.workflow.domain.CheckBack;
 
 public interface CheckBackMapper {
     Integer save(CheckBack checkBack);
+
+    CheckBack findByMgrId(Integer id);
 }

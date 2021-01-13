@@ -18,4 +18,6 @@ public interface EmployeeMapper {
     List<Employee> findByNameAndPass(Employee employee);
 
     Employee findByName(String name);
+
+    Employee findByMgrId(Integer id);
 }
