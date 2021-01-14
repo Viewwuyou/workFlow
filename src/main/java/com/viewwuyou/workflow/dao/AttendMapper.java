@@ -16,6 +16,8 @@ public interface AttendMapper {
 
     Integer delete(Integer id);
 
+    List<Attend> findByEmpId(Integer id);
+
     List<Attend> findByEmpAndMonth(Employee employee, String month);
 
     List<Attend> findByEmpAndDutyDay(Employee employee, String dutyDay);

@@ -16,6 +16,9 @@
         update application_inf set attend_id = #{attend.id}, app_reason = #{reason}, app_result = #{result},
                                    type_id = #{type.id} where app_id = #{id};
     </update>
+    <delete id="delete">
+        delete from application_inf where app_id = #{id};
+    </delete>
     <select id="get" resultMap="applicationMap">
         select app.*, type.*
         from application_inf app
