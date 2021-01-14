@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.viewwuyou.workflow.dao.EmployeeMapper">
+    <sql id="selectSql">
+        select * from employee_inf
+    </sql>
+
+
     <resultMap id="employeeMap" type="employee">
         <id column="emp_id" property="id"/>
         <result column="emp_name" property="name"/>
@@ -24,5 +29,46 @@
             <case value="2" resultMap="com.viewwuyou.workflow.dao.ManagerMapper.managerMap"/>
         </discriminator>
     </resultMap>
+
+
+    <insert id="save" parameterType="employee">
+        insert into employee_inf
+        values (null, 1, #{name}, #{pass}, #{salary}, #{manager.id}, null);
+    </insert>
+    <update id="update" parameterType="employee">
+        update employee_inf set
+        emp_name = #{name},
+        emp_pass = #{pass},
+        emp_salary = #{salary},
+        mgr_id = #{manager.id}
+        where emp_id = #{id};
+    </update>
+    <delete id="delete">
+        delete from employee_inf
+        where emp_id = #{id};
+    </delete>
+
+    <select id="get" resultMap="employeeMap">
+        <include refid="selectSql"/>
+        where emp_id = #{id};
+    </select>
+
+    <select id="findAll" resultMap="employeeMap">
+        <include refid="selectSql"/>
+    </select>
+    <select id="findByNameAndPass" resultMap="employeeMap">
+        <include refid="selectSql"/>
+        where emp_name = #{name}
+        and emp_pass = #{pass};
+    </select>
+
+    <select id="findByName" resultMap="employeeMap">
+        <include refid="selectSql"/>
+        where emp_name = #{name};
+    </select>
+    <select id="findByMgrId" resultMap="employeeMap">
+        <include refid="selectSql"/>
+        where mgr_id = #{id};
+    </select>
     <cache/>
 </mapper>
