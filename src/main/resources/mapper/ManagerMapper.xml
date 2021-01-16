@@ -14,4 +14,37 @@
                     select="com.viewwuyou.workflow.dao.EmployeeMapper.findByMgrId"
                     fetchType="lazy"/>
     </resultMap>
+
+    <insert id="save" parameterType="manager">
+        insert into employee_inf values
+        (null, 2, #{name}, #{pass}, #{salary}, null, #{dept});
+    </insert>
+
+    <update id="update" parameterType="manager">
+        update employee_inf set
+        emp_name = #{name},
+        emp_pass = #{pass},
+        emp_salary = #{salary},
+        dept_name = #{dept}
+        where emp_id = #{id};
+    </update>
+
+    <delete id="delete">
+        delete from employee_inf where emp_id = #{id};
+    </delete>
+
+    <select id="get" resultMap="managerMap">
+        select * from employee_inf
+        where emp_id = #{id};
+    </select>
+
+    <select id="findByNameAndPass" resultMap="managerMap">
+        select * from employee_inf
+        where emp_name = #{name} and emp_pass = #{pass};
+    </select>
+
+    <select id="findByName" resultMap="managerMap">
+        select * from employee_inf
+        where emp_name = #{name};
+    </select>
 </mapper>

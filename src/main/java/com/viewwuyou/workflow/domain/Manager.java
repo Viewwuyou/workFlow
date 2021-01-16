@@ -16,10 +16,9 @@ public class Manager extends Employee implements Serializable {
     public Manager() {
     }
 
-    public Manager(String dept, List<Employee> employees, List<CheckBack> checks) {
+    public Manager(Integer id, String pass, double salary, String name, Manager manager, List<Attend> attends, List<Payment> payments, String dept) {
+        super(id, pass, salary, name, manager, attends, payments);
         this.dept = dept;
-        this.employees = employees;
-        this.checks = checks;
     }
 
     public String getDept() {
