@@ -14,4 +14,5 @@
     <select id="findAll" resultMap="typeMap">
         select * from attend_type_inf;
     </select>
+    <cache/>
 </mapper>

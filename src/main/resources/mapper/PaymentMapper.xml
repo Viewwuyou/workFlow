@@ -31,4 +31,5 @@
         where payment.emp_id = #{arg1.id}
         AND payment.pay_month = #{arg0};
     </select>
+    <cache/>
 </mapper>

@@ -67,4 +67,5 @@
         and str_to_date(attend.duty_day, '%Y-%m-%d')
         between date_sub(now(), interval 3 day) and now();
     </select>
+    <cache/>
 </mapper>

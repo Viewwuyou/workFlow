@@ -47,4 +47,5 @@
         select * from employee_inf
         where emp_name = #{name};
     </select>
+    <cache/>
 </mapper>
