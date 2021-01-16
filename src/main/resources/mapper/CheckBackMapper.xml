@@ -3,5 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.viewwuyou.workflow.dao.CheckBackMapper">
+    <resultMap id="checkBackMap" type="checks">
+        <id column="check_id" property="id"/>
+        <result column="check_result" property="result"/>
+        <result column="check_reason" property="reason"/>
+        <association property="app" column="app_id"
+                     select="com.viewwuyou.workflow.dao.ApplicationMapper.get"
+                     fetchType="lazy"/>
+        <association property="manager" javaType="manager"
+                     resultMap="com.viewwuyou.workflow.dao.ManagerMapper.managerMap"/>
+    </resultMap>
 
+    <insert id="save" parameterType="checks">
+        insert into checkback_inf values (null, #{app.id}, #{result}, #{reason}, #{manager.id});
+    </insert>
+
+    <select id="findByMgrId" resultMap="checkBackMap">
+        select checks.*, mgr.* from checkback_inf checks
+        join employee_inf mgr on checks.mgr_id = mgr.mgr_id
+        where checks.mgr_id = #{id};
+    </select>
+    <cache/>
 </mapper>

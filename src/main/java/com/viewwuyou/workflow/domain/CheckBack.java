@@ -11,16 +11,18 @@ public class CheckBack implements Serializable {
     private Integer id;
     private boolean result;
     private Application app;
+    private String reason;
     private Manager manager;
 
     public CheckBack() {
     }
 
-    public CheckBack(Integer id, boolean result, Application app, Manager manager) {
+    public CheckBack(Integer id, boolean result, Application app, Manager manager, String reason) {
         this.id = id;
         this.result = result;
         this.app = app;
         this.manager = manager;
+        this.reason = reason;
     }
 
     public Integer getId() {
@@ -53,5 +55,13 @@ public class CheckBack implements Serializable {
 
     public void setManager(Manager manager) {
         this.manager = manager;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }
