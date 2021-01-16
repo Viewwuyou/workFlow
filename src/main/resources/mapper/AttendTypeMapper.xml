@@ -4,5 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.viewwuyou.workflow.dao.AttendTypeMapper">
     <resultMap id="typeMap" type="type">
+        <id column="type_id" property="id"/>
+        <result column="type_name" property="name"/>
+        <result column="amerce_amount" property="amerce"/>
     </resultMap>
+    <select id="get" resultMap="typeMap">
+        select * from attend_type_inf where type_id = #{id};
+    </select>
+    <select id="findAll" resultMap="typeMap">
+        select * from attend_type_inf;
+    </select>
 </mapper>
