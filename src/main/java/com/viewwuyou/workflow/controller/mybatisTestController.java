@@ -3,10 +3,8 @@ package com.viewwuyou.workflow.controller;
 import com.viewwuyou.workflow.dao.EmployeeMapper;
 import com.viewwuyou.workflow.domain.Employee;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
@@ -19,7 +17,7 @@ public class mybatisTestController {
     @ResponseBody
     public String employee() {
         Employee employee = employeeMapper.get(1);
-        return employee.getName()+employee.getPass();
+        return employee.getName() + employee.getPass();
     }
 
 }

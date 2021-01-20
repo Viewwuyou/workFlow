@@ -23,7 +23,7 @@
                     fetchType="lazy"/>
         <collection property="payments" javaType="ArrayList"
                     ofType="com.viewwuyou.workflow.domain.Payment" column="emp_id"
-                    select="com.viewwuyou.workflow.dao.PaymentMapper.findByEmpId"
+                    select="com.viewwuyou.workflow.dao.PaymentMapper.findByEmp"
                     fetchType="lazy"/>
         <discriminator javaType="int" column="emp_type">
             <case value="2" resultMap="com.viewwuyou.workflow.dao.ManagerMapper.managerMap"/>
