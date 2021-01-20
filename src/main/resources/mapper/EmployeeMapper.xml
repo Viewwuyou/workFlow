@@ -8,21 +8,21 @@
     </sql>
 
 
-    <resultMap id="employeeMap" type="employee">
+    <resultMap id="employeeMap" type="com.viewwuyou.workflow.domain.Employee">
         <id column="emp_id" property="id"/>
         <result column="emp_name" property="name"/>
         <result column="emp_pass" property="pass"/>
         <result column="emp_salary" property="salary"/>
-        <association property="manager" javaType="manager"
+        <association property="manager" javaType="com.viewwuyou.workflow.domain.Manager"
                      column="emp_id"
                      select="com.viewwuyou.workflow.dao.EmployeeMapper.get"
                      fetchType="lazy"/>
         <collection property="attends"  javaType="ArrayList"
-                    ofType="attend" column="emp_id"
+                    ofType="com.viewwuyou.workflow.domain.Attend" column="emp_id"
                     select="com.viewwuyou.workflow.dao.AttendMapper.findByEmpId"
                     fetchType="lazy"/>
         <collection property="payments" javaType="ArrayList"
-                    ofType="payment" column="emp_id"
+                    ofType="com.viewwuyou.workflow.domain.Payment" column="emp_id"
                     select="com.viewwuyou.workflow.dao.PaymentMapper.findByEmpId"
                     fetchType="lazy"/>
         <discriminator javaType="int" column="emp_type">
@@ -31,11 +31,11 @@
     </resultMap>
 
 
-    <insert id="save" parameterType="employee">
+    <insert id="save" parameterType="com.viewwuyou.workflow.domain.Employee">
         insert into employee_inf
         values (null, 1, #{name}, #{pass}, #{salary}, #{manager.id}, null);
     </insert>
-    <update id="update" parameterType="employee">
+    <update id="update" parameterType="com.viewwuyou.workflow.domain.Employee">
         update employee_inf set
         emp_name = #{name},
         emp_pass = #{pass},

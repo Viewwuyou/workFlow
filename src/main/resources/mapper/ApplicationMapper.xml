@@ -9,10 +9,10 @@
 根据测试，mybatis的mapper配置文件中会指定namespace，该namespace是引用包名的前缀，而非配置文件自身所在的包或文件夹。
 -->
 <mapper namespace="com.viewwuyou.workflow.dao.ApplicationMapper">
-    <insert id="save" parameterType="application">
+    <insert id="save" parameterType="com.viewwuyou.workflow.domain.Application">
         insert into application_inf values (null, #{attend.id}, #{reason}, false, #{type.id});
     </insert>
-    <update id="update" parameterType="application">
+    <update id="update" parameterType="com.viewwuyou.workflow.domain.Application">
         update application_inf set attend_id = #{attend.id}, app_reason = #{reason}, app_result = #{result},
                                    type_id = #{type.id} where app_id = #{id};
     </update>
@@ -33,16 +33,16 @@
         join attend_type_inf type on app.type_id = type.type_id
         where attend.emp_id = #{id}
     </select>
-    <resultMap id="applicationMap" type="application">
+    <resultMap id="applicationMap" type="com.viewwuyou.workflow.domain.Application">
         <id column="app_id" property="id"/>
         <result column="app_reason" property="reason"/>
         <result column="app_result" property="result"/>
 
-        <association property="attend" javaType="attend"
+        <association property="attend" javaType="com.viewwuyou.workflow.domain.Attend"
                      column="attend_id"
                      select="com.viewwuyou.workflow.dao.AttendMapper.get"
                      fetchType="lazy"/>
-        <association property="type" javaType="type"
+        <association property="type" javaType="com.viewwuyou.workflow.domain.AttendType"
                      resultMap="com.viewwuyou.workflow.dao.AttendTypeMapper.typeMap"/>
         <!--此处对应文件开头的注解，这里的resultMap的引用是namespace-->
     </resultMap>

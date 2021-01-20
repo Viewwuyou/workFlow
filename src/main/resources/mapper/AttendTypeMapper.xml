@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.viewwuyou.workflow.dao.AttendTypeMapper">
-    <resultMap id="typeMap" type="type">
+    <resultMap id="typeMap" type="com.viewwuyou.workflow.domain.AttendType">
         <id column="type_id" property="id"/>
         <result column="type_name" property="name"/>
         <result column="amerce_amount" property="amerce"/>

@@ -3,24 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.viewwuyou.workflow.dao.ManagerMapper">
-    <resultMap id="managerMap" type="manager" extends="com.viewwuyou.workflow.dao.EmployeeMapper.employeeMap">
+    <resultMap id="managerMap" type="com.viewwuyou.workflow.domain.Manager" extends="com.viewwuyou.workflow.dao.EmployeeMapper.employeeMap">
         <result column="dept_name" property="dept"/>
         <collection property="checks" javaType="ArrayList"
-                    ofType="checks" column="emp_id"
+                    ofType="com.viewwuyou.workflow.domain.CheckBack" column="emp_id"
                     select="com.viewwuyou.workflow.dao.CheckBackMapper.findByMgrId"
                     fetchType="lazy"/>
         <collection property="employees" javaType="ArrayList"
-                    ofType="employee" column="emp_id"
+                    ofType="com.viewwuyou.workflow.domain.Employee" column="emp_id"
                     select="com.viewwuyou.workflow.dao.EmployeeMapper.findByMgrId"
                     fetchType="lazy"/>
     </resultMap>
 
-    <insert id="save" parameterType="manager">
+    <insert id="save" parameterType="com.viewwuyou.workflow.domain.Manager">
         insert into employee_inf values
         (null, 2, #{name}, #{pass}, #{salary}, null, #{dept});
     </insert>
 
-    <update id="update" parameterType="manager">
+    <update id="update" parameterType="com.viewwuyou.workflow.domain.Manager">
         update employee_inf set
         emp_name = #{name},
         emp_pass = #{pass},

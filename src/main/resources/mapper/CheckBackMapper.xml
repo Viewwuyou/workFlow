@@ -3,18 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.viewwuyou.workflow.dao.CheckBackMapper">
-    <resultMap id="checkBackMap" type="checks">
+    <resultMap id="checkBackMap" type="com.viewwuyou.workflow.domain.CheckBack">
         <id column="check_id" property="id"/>
         <result column="check_result" property="result"/>
         <result column="check_reason" property="reason"/>
         <association property="app" column="app_id"
                      select="com.viewwuyou.workflow.dao.ApplicationMapper.get"
                      fetchType="lazy"/>
-        <association property="manager" javaType="manager"
+        <association property="manager" javaType="com.viewwuyou.workflow.domain.Manager"
                      resultMap="com.viewwuyou.workflow.dao.ManagerMapper.managerMap"/>
     </resultMap>
 
-    <insert id="save" parameterType="checks">
+    <insert id="save" parameterType="com.viewwuyou.workflow.domain.CheckBack">
         insert into checkback_inf values (null, #{app.id}, #{result}, #{reason}, #{manager.id});
     </insert>
 

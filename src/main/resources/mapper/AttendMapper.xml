@@ -11,13 +11,13 @@
                  join employee_inf emp
                       on attend.emp_id = emp.emp_id
     </sql>
-    <resultMap id="attendMap" type="attend">
+    <resultMap id="attendMap" type="com.viewwuyou.workflow.domain.Attend">
         <id column="attend_id" property="id"/>
         <result column="duty_day" property="dutyDay"/>
         <result column="punch_time" property="punchTime"/>
         <result column="is_come" property="isCome"/>
-        <association property="type" javaType="type" resultMap="com.viewwuyou.workflow.dao.AttendTypeMapper.typeMap"/>
-        <association property="employee" javaType="employee" resultMap="com.viewwuyou.workflow.dao.EmployeeMapper.employeeMap"/>
+        <association property="type" javaType="com.viewwuyou.workflow.domain.AttendType" resultMap="com.viewwuyou.workflow.dao.AttendTypeMapper.typeMap"/>
+        <association property="employee" javaType="com.viewwuyou.workflow.domain.Employee" resultMap="com.viewwuyou.workflow.dao.EmployeeMapper.employeeMap"/>
     </resultMap>
     <delete id="delete">
         delete from attend_inf where attend_id = #{id};
@@ -27,11 +27,11 @@
         <include refid="selectSql"/>
         where attend.attend_id = #{id};
     </select>
-    <insert id="save" parameterType="attend">
+    <insert id="save" parameterType="com.viewwuyou.workflow.domain.Attend">
         insert into attend_inf
         values (null, #{dutyDay}, #{punchTime}, #{isCome}, #{type.id}, #{employee.id});
     </insert>
-    <update id="update" parameterType="attend">
+    <update id="update" parameterType="com.viewwuyou.workflow.domain.Attend">
         update attend_inf set
         duty_day = #{dutyDay},
         punch_time = #{punchTime},
